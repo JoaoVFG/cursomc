@@ -25,4 +25,9 @@ public class CategoriaService {
 											   ". Tipo: " + Categoria.class.getName()));
 	}
 	
+	
+	public Categoria insert(Categoria categoria) {
+		return categoriaRepository.save(categoria);
+	}
+	
 }
