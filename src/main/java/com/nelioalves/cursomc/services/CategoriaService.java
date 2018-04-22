@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.nelioalves.cursomc.Repositories.CategoriaRepository;
 import com.nelioalves.cursomc.domain.Categoria;
+import com.nelioalves.cursomc.dto.CategoriaDto;
 import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -73,6 +74,11 @@ public class CategoriaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
 		return categoriaRepository.findAll(pageRequest);
+	}
+	
+	
+	public Categoria fromDto(CategoriaDto categoriaDto) {
+		return new Categoria(categoriaDto.getId(), categoriaDto.getNome());
 	}
 	
 }
