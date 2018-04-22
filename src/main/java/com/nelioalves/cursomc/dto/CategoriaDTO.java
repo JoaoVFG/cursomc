@@ -4,6 +4,7 @@ import com.nelioalves.cursomc.domain.Categoria;
 
 public class CategoriaDTO {
 	
+	
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
