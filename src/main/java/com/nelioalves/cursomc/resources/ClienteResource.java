@@ -1,6 +1,7 @@
 package com.nelioalves.cursomc.resources;
 
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.nelioalves.cursomc.domain.Cliente;
 import com.nelioalves.cursomc.dto.ClienteDto;
+import com.nelioalves.cursomc.dto.ClienteNewDto;
 import com.nelioalves.cursomc.services.ClienteService;
 
 @RestController
@@ -47,6 +50,23 @@ public class ClienteResource {
 											.collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(listaclienteDto);
+		
+	}
+	
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDto clienteNewDto){
+		
+		Cliente cliente = clienteService.fromDto(clienteNewDto);
+		
+		cliente = clienteService.insert(cliente);
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+											 .path("/{id}")
+											 .buildAndExpand(cliente.getId())
+											 .toUri();
+		
+		return ResponseEntity.created(uri).build();
 		
 	}
 	

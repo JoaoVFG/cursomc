@@ -55,8 +55,10 @@ public class CategoriaResource {
 		
 		categoria = categoriaService.insert(categoria);
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
-				.toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+											 .path("/{id}")
+											 .buildAndExpand(categoria.getId())
+											 .toUri();
 
 		return ResponseEntity.created(uri).build();
 	}
