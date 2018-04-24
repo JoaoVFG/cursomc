@@ -76,7 +76,7 @@ public class ClienteService {
 			clienteRepository.deleteById(id);
 		}
 		catch (DataIntegrityViolationException erro) {
-			throw new DataIntegrityException("NAO E POSSIVEL EXCLUIR UM CLIENTE QUE POSSUE PEDIDOS E TELEFONES CADASTRADOS");
+			throw new DataIntegrityException("NAO E POSSIVEL EXCLUIR UM CLIENTE QUE POSSUE PEDIDOS CADASTRADOS");
 		}
 		
 	}
