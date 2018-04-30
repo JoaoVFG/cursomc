@@ -17,6 +17,7 @@ import com.nelioalves.cursomc.repositories.ItemPedidoRepository;
 import com.nelioalves.cursomc.repositories.PagamentoRepository;
 import com.nelioalves.cursomc.repositories.PedidoRepository;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
+import com.nelioalves.cursomc.services.mail.EmailService;
 
 @Service
 public class PedidoService {
@@ -38,6 +39,9 @@ public class PedidoService {
 	
 	@Autowired
 	private ClienteService clienteService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	public Pedido find (Integer id){
 		
@@ -78,7 +82,9 @@ public class PedidoService {
 		}
 		
 		itemPedidoRepository.saveAll(pedido.getItens());
-		System.out.println(pedido);
+		
+		emailService.sendOrderConfirmationEmail(pedido);
+		
 		return pedido;
 	}
 }
