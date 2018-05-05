@@ -1,7 +1,5 @@
 package com.nelioalves.cursomc.security;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -39,8 +37,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter{
 		if (headerAuthorization != null && 
 			headerAuthorization.startsWith("Bearer ")) {
 			
-				UsernamePasswordAuthenticationToken authentication = getAuthentication(httpServletRequest, 
-																			 headerAuthorization.substring(7));
+				UsernamePasswordAuthenticationToken authentication = getAuthentication(headerAuthorization.substring(7));
 				
 				if(authentication != null) {
 					
