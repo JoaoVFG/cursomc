@@ -1,4 +1,4 @@
-package com.nelioalves.cursomc.services.security;
+package com.nelioalves.cursomc.security;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nelioalves.cursomc.dto.CredenciaisDto;
-import com.nelioalves.cursomc.security.UserSS;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 	
