@@ -22,10 +22,10 @@ import com.nelioalves.cursomc.repositories.ItemPedidoRepository;
 import com.nelioalves.cursomc.repositories.PagamentoRepository;
 import com.nelioalves.cursomc.repositories.PedidoRepository;
 import com.nelioalves.cursomc.security.UserSS;
-import com.nelioalves.cursomc.security.UserService;
 import com.nelioalves.cursomc.services.exceptions.AuthorizationException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 import com.nelioalves.cursomc.services.mail.EmailService;
+import com.nelioalves.cursomc.services.security.UserService;
 
 @Service
 public class PedidoService {
