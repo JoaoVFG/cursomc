@@ -19,7 +19,7 @@ public class JWTUtil {
 	private Long expiration;
 	
 	
-	public String GenerateToken(String email) {
+	public String generateToken(String email) {
 		
 		return Jwts.builder()
 				.setSubject(email)

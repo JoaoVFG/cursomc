@@ -63,7 +63,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 										  FilterChain filterChain,
 										  Authentication authentication) throws IOException, ServletException{
 		String username = ((UserSS) authentication.getPrincipal()).getUsername();
-		String token = jwtUtil.GenerateToken(username);
+		String token = jwtUtil.generateToken(username);
 		response.addHeader("Authorization","Bearer " +  token);
 	}
 	

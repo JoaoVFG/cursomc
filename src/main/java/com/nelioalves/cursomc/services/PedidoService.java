@@ -53,11 +53,13 @@ public class PedidoService {
 	
 	public Pedido find (Integer id){
 		
-		UserSS userSS = UserService.authenticated();
 		
 		Optional<Pedido> pedido =  pedidoRepository.findById(id);
 		
 		if(!pedido.equals(null)) {
+			
+			UserSS userSS = UserService.authenticated();
+			
 			if(userSS==null || !userSS.hasRole(Perfil.ADMIN) && 
 							   !pedido.get().getCliente().getId().equals(userSS.getId())) {
 				
