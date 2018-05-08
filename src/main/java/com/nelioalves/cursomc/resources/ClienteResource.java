@@ -42,6 +42,7 @@ public class ClienteResource {
 		
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<ClienteDto>> findAll() {
 		
@@ -91,7 +92,7 @@ public class ClienteResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<ClienteDto>> findPage(
 												@RequestParam(name = "page", defaultValue = "0") Integer page,
