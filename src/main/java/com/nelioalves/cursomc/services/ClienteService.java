@@ -81,6 +81,28 @@ public class ClienteService {
 	}
 	
 	
+	public Cliente findByEmail(String email) {
+		
+		UserSS userSS = UserService.authenticated();
+		
+		if(userSS==null || !userSS.hasRole(Perfil.ADMIN) && !email.equals(userSS.getUsername())) {
+			
+			throw new AuthorizationException("Acesso Negado");
+		
+		}
+		
+		Cliente cliente = clienteRepository.findByEmail(email);
+		
+		if(cliente == null) {
+			throw new ObjectNotFoundException("Objeto não encontrado! ID: " + userSS.getId() + 
+											  ". Tipo: " + Cliente.class.getName());
+		}
+		
+		return cliente;
+		
+	}
+	
+	
 	public Cliente insert(Cliente cliente) {
 		
 		cliente.setId(null);
