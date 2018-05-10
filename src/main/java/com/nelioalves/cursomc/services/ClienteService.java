@@ -25,9 +25,11 @@ import com.nelioalves.cursomc.dto.ClienteNewDto;
 import com.nelioalves.cursomc.repositories.ClienteRepository;
 import com.nelioalves.cursomc.repositories.EnderecoRepository;
 import com.nelioalves.cursomc.security.UserSS;
+import com.nelioalves.cursomc.services.amazon.S3Service;
 import com.nelioalves.cursomc.services.exceptions.AuthorizationException;
 import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
+import com.nelioalves.cursomc.services.media.ImagemService;
 import com.nelioalves.cursomc.services.security.UserService;
 
 @Service

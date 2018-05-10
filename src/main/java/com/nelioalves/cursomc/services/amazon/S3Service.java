@@ -1,4 +1,4 @@
-package com.nelioalves.cursomc.services;
+package com.nelioalves.cursomc.services.amazon;
 
 import java.io.IOException;
 import java.io.InputStream;

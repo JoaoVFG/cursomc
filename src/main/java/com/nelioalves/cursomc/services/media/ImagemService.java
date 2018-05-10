@@ -1,4 +1,4 @@
-package com.nelioalves.cursomc.services;
+package com.nelioalves.cursomc.services.media;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
