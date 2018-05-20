@@ -88,7 +88,8 @@ public class ClienteService {
 		UserSS userSS = UserService.authenticated();
 		
 		if(userSS==null || !userSS.hasRole(Perfil.ADMIN) && !email.equals(userSS.getUsername())) {
-			
+			System.out.println("Acesso negado!");
+			System.out.println(userSS.getUsername().toString());
 			throw new AuthorizationException("Acesso Negado");
 		
 		}
