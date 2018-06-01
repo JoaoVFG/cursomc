@@ -88,7 +88,9 @@ public class PedidoService {
 			boletoService.preencherPagamentoComBoleto(pagamento, pedido.getInstante());
 		}
 		
-		pedidoRepository.save(pedido);
+		pedido = pedidoRepository.save(pedido);
+		
+		
 		pagamentoRepository.save(pedido.getPagamento());
 		
 		for (ItemPedido itemPedido : pedido.getItens()) {
