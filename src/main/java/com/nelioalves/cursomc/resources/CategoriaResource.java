@@ -22,13 +22,16 @@ import com.nelioalves.cursomc.domain.Categoria;
 import com.nelioalves.cursomc.dto.CategoriaDto;
 import com.nelioalves.cursomc.services.CategoriaService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
 
 	@Autowired
 	CategoriaService categoriaService;
-
+	
+	@ApiOperation(value="Busca de Categoria por id")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
 
@@ -38,7 +41,7 @@ public class CategoriaResource {
 
 	}
 	
-	
+	@ApiOperation(value="Busca todas as Categorias")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<CategoriaDto>> findAll() {
 
@@ -50,6 +53,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(listaCategoriasDTO);
 	}
 	
+	@ApiOperation(value="Inseri uma nova Categoria")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDto categoriaDto) {
@@ -66,6 +70,8 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	
+	@ApiOperation(value="Altera uma Categoria")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDto categoriaDto, @PathVariable Integer id) {
@@ -80,6 +86,8 @@ public class CategoriaResource {
 
 	}
 	
+	
+	@ApiOperation(value="Altera uma Categoria")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
@@ -87,7 +95,8 @@ public class CategoriaResource {
 
 		return ResponseEntity.noContent().build();
 	}
-
+	
+	@ApiOperation(value="Busca de Categoria paginada")
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<CategoriaDto>> findPage(
 												@RequestParam(name = "page", defaultValue = "0") Integer page,

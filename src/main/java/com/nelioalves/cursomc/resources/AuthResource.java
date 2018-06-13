@@ -16,6 +16,8 @@ import com.nelioalves.cursomc.security.UserSS;
 import com.nelioalves.cursomc.services.security.AuthService;
 import com.nelioalves.cursomc.services.security.UserService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/auth")
 public class AuthResource {
@@ -26,6 +28,7 @@ public class AuthResource {
 	@Autowired
 	private AuthService authService;
 	
+	@ApiOperation(value="Recarrega o Token(Caso esteja ativo)")
 	@RequestMapping(value="/refresh_token", method=RequestMethod.POST)
 	public ResponseEntity<Void> refreshToken(HttpServletResponse response) {
 		
@@ -37,7 +40,7 @@ public class AuthResource {
 	}
 	
 	
-	
+	@ApiOperation(value="Esqueceu a senha")
 	@RequestMapping(value="/forgot", method=RequestMethod.POST)
 	public ResponseEntity<Void> forgot(@Valid @RequestBody emailDto emailDto) {
 		

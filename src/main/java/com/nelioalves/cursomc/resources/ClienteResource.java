@@ -25,6 +25,8 @@ import com.nelioalves.cursomc.dto.ClienteDto;
 import com.nelioalves.cursomc.dto.ClienteNewDto;
 import com.nelioalves.cursomc.services.ClienteService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/clientes")
 public class ClienteResource {
@@ -33,7 +35,7 @@ public class ClienteResource {
 	@Autowired
 	ClienteService clienteService;
 	
-	
+	@ApiOperation(value="Busca Cliente por Id")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Cliente> find(@PathVariable Integer id) {
 		
@@ -43,6 +45,7 @@ public class ClienteResource {
 		
 	}
 	
+	@ApiOperation(value="Busca Cliente por email")
 	@RequestMapping(value = "/email", method = RequestMethod.GET)
 	public ResponseEntity<Cliente> find(@RequestParam(name = "value") String email) {
 		
@@ -53,7 +56,7 @@ public class ClienteResource {
 	}
 	
 	
-	
+	@ApiOperation(value="Busca todos os Clientes")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<ClienteDto>> findAll() {
@@ -67,7 +70,7 @@ public class ClienteResource {
 		
 	}
 	
-	
+	@ApiOperation(value="Inseri um Novo Cliente")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDto clienteNewDto){
 		
@@ -84,7 +87,7 @@ public class ClienteResource {
 		
 	}
 	
-	
+	@ApiOperation(value="Altera uma cliente")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDto clienteDto, @PathVariable Integer id){
 		Cliente cliente = clienteService.fromDto(clienteDto);
@@ -96,6 +99,8 @@ public class ClienteResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	
+	@ApiOperation(value="Deleta um Cliente")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
@@ -104,6 +109,7 @@ public class ClienteResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@ApiOperation(value="Busca de clientes paginada")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<ClienteDto>> findPage(
@@ -119,6 +125,7 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(listaClientesDTO);
 	}
 	
+	@ApiOperation(value="Envia Foto de Perfil")
 	@RequestMapping(value = "/picture")
 	public ResponseEntity uploadProfilePicture(@RequestParam(name = "file") MultipartFile multipartFile){
 		
