@@ -1,0 +1,7 @@
+language: java
+
+before_install:
+	- echo "Testando Integracao Continua"
+	
+script:
+	mvn clean verify
